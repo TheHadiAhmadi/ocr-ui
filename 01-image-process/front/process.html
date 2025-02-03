@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/tailwind.js"></script>
+    <title>Image Processor</title>
+    <style>
+        form[data-loading] {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="bg-white shadow border-b">
+        <div class="flex items-center p-4 mx-auto container">
+            <a href="/">
+             &lt; Back
+            </a>
+        </div>
+    </div>
+    <div class="container p-4 mx-auto flex gap-6">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white shadow-lg rounded-lg p-4">
+            <h2 class="text-xl font-semibold mb-4">Processing Options</h2>
+            <form id="sidebar-form" data-loading>
+                <label class="block mb-2">
+                    <span class="text-sm">Contrast</span>
+                    <input class="w-full p-2 border border-gray-300" type="range" name="contrast" min="0" max="1000" value="100">
+                </label>
+                <label class="block mb-2">
+                    <span class="text-sm">Resize factor</span>
+                    <input class="w-full p-2 border border-gray-300" type="range" name="resize_factor" min="0" max="16" step="0.25" value="1">
+                </label>
+                
+                <label class="inline-flex gap-2 mb-2">
+                    <input class="w-full p-2 border border-gray-300" type="checkbox" name="grayscale">
+                    <span class="text-sm">Grayscale</span>
+                </label>
+                <div></div>
+                <label class="inline-flex gap-2 mb-2">
+                    <input class="w-full p-2 border border-gray-300" type="checkbox" name="binarize">
+                    <span class="text-sm">Binarize</span>
+                </label>
+                <input class="px-4 py-2 rounded w-full bg-blue-600 text-white" type="submit" value="Submit">
+            </form>
+            <button id="manage-box-btn" class="mt-2 px-4 py-2 rounded w-full border border-blue-600 text-blue-600">Manage Boxes</button>
+        </aside>
+
+        <!-- Image Preview -->
+        <div class="sticky top-0 h-[90vh] overflow-auto flex-1 bg-white shadow-lg rounded-lg">
+            <div class="h-8 sticky top-0 w-full bg-white z-50 py-2">
+                <input type="range" min="0" max="100" value="50" id="slider" class="w-full" oninput="updateSlider()">
+            </div>
+        
+            <div class="relative overflow-hidden w-full">
+                <div class="relative w-full">
+                    <!-- Original Image -->
+                    <img id="original-img" class="w-full">
+                    <!-- Processed Image with Clipping -->
+                    <div class="absolute top-0 left-0 w-full h-full">
+                        <img id="processed-img" class="w-full" style="clip-path: inset(0 0 0 50%);">
+                    </div>
+                </div>
+                <!-- Slider -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const filename = urlParams.get('filename');
+
+        if (!filename) {
+            alert("No image selected");
+            window.location.href = "/app/";
+        }
+
+        fetch("/load-image/" + filename).then(res => res.json()).then(res => {
+            
+            const form = document.getElementById('sidebar-form')
+            
+            form.querySelector(`[name="contrast"]`).value = res.contrast;
+            form.querySelector(`[name="resize_factor"]`).value = res.resize_factor;
+            form.querySelector(`[name="grayscale"]`).checked = res.grayscale;
+            form.querySelector(`[name="binarize"]`).checked = res.binarize;
+            form.removeAttribute("data-loading")
+        });
+
+
+        document.getElementById('original-img').src = `/static/samples/${filename}`;
+        document.getElementById('processed-img').src = `/static/processed/${filename}`;
+
+
+        if (!filename) {
+            alert("No image selected");
+            window.location.href = "/app/";
+        }
+
+        
+        function updateSlider() {
+            const slider = document.getElementById('slider');
+            const processedImg = document.getElementById('processed-img');
+            const value = slider.value;
+            processedImg.style.clipPath = `inset(0 0 0 ${value}%)`;
+        }
+
+    document.getElementById("sidebar-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        e.target.setAttribute('data-loading', '');
+        const formData = new FormData(e.target);
+
+        const contrast = +formData.get("contrast");
+        const binarize = e.target.querySelector(`[name="binarize"]`).checked;
+        const grayscale = e.target.querySelector(`[name="grayscale"]`).checked;
+        const resize_factor = +formData.get("resize_factor");
+        
+
+        submit({contrast, binarize, grayscale, resize_factor});
+    });
+
+    async function submit(filter) {
+        const res = await fetch(`/process`, {
+            method: "POST",
+            body: JSON.stringify({ filename, ...filter}),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        if (res.ok) {
+            alert("Image converted successfully");
+            const processedImg = document.getElementById('processed-img');
+
+            processedImg.src = `/static/processed/${filename}?t=${Date.now()}`;
+        } else {
+            alert("Failed to process image");
+        }
+        document.getElementById("sidebar-form").removeAttribute('data-loading');
+    }
+
+    document.getElementById("manage-box-btn").addEventListener("click", function() {
+        window.location.href = `/manual-ocr/${filename}`;
+    });
+
+    </script>
+
+</body>
+</html>

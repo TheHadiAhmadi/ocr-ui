@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/tailwind.js"></script>
+    <title>Document</title>
+</head>
+<body class="bg-gray-100 p-6">
+
+    <div class="max-w-5xl mx-auto">
+        <h1 class="text-2xl font-bold mb-4">Image Processor</h1>
+
+        <!-- Image Lists -->
+            
+            <!-- Sample Images -->
+        <div>
+            <h2 class="text-xl font-semibold mb-3">All Images</h2>
+            <div id="all-images" class="grid grid-cols-3 gap-4"></div>
+        </div>
+        <br/>
+        <!-- Processed Images -->
+        <div>
+            <h2 class="text-xl font-semibold mb-3">Processed Images</h2>
+            <div id="processed-images" class="grid grid-cols-3 gap-4"></div>
+        </div>
+
+    </div>
+    <script>
+        async function fetchImages() {
+            // Fetch all images
+            const imagesRes = await fetch('/list-images');
+            const imagesData = await imagesRes.json();
+            const imagesContainer = document.getElementById('all-images');
+
+            imagesContainer.innerHTML = '';
+            imagesData.images.forEach(img => {
+                const linkElem = document.createElement('a');
+                linkElem.classList = "block w-full max-h-60 cursor-pointer hover:opacity-75";
+                linkElem.href = `/process/${img}`;
+                
+                const imgElem = document.createElement('img');
+                imgElem.src = `/static/images/${img}`;
+                imgElem.classList = "w-full h-full object-cover";
+                
+                imagesContainer.appendChild(linkElem);
+                linkElem.appendChild(imgElem);
+            });
+
+
+            const processedRes = await fetch('/list-processed');
+            const processedData = await processedRes.json();
+            const processedContainer = document.getElementById('processed-images');
+
+            processedContainer.innerHTML = '';
+            processedData.images.forEach(img => {
+                const linkElem = document.createElement('a');
+                linkElem.classList = "block w-full max-h-60 cursor-pointer hover:opacity-75";
+                linkElem.href = `/process/${img}`;
+                
+                const imgElem = document.createElement('img');
+                imgElem.src = `/static/processed/${img}`;
+                imgElem.classList = "w-full max-h-60 object-cover cursor-pointer hover:opacity-75";
+                
+                processedContainer.appendChild(linkElem);
+                linkElem.appendChild(imgElem);
+            });
+        }
+
+        fetchImages(); // Load images on page load
+    </script>
+</body>
+</html>
