@@ -1,0 +1,180 @@
+{
+  "tesseract": {
+    "avg_processing_time": 20.749979066848756,
+    "avg_iou": 0.2301887434617711,
+    "avg_precision": 1.0,
+    "avg_recall": 0.1881091105349086,
+    "avg_f1_score": 0.2984240652639676,
+    "images": {
+      "1": {
+        "processing_time": 8.909185886383057,
+        "iou_scores": [],
+        "iou_avg": 0.28235506492162277,
+        "precision": 1.0,
+        "recall": 0.16666666666666666,
+        "f1_score": 0.2857142857142857
+      },
+      "2": {
+        "processing_time": 30.150747537612915,
+        "iou_scores": [],
+        "iou_avg": 0.19655667838045832,
+        "precision": 1.0,
+        "recall": 0.15517241379310345,
+        "f1_score": 0.26865671641791045
+      },
+      "3": {
+        "processing_time": 21.16218113899231,
+        "iou_scores": [],
+        "iou_avg": 0.11327278862506024,
+        "p recision": 1.0,
+        "recall": 0.01904761904761905,
+        "f1_score": 0.037383177570093455
+      },
+      "4": {
+        "processing_time": 43.48482704162598,
+        "iou_scores": [],
+        "iou_avg": 0.0763155515550145,
+        "precision": 1.0,
+        "recall": 0.027777777777777776,
+        "f1_score": 0.05405405405405406
+      },
+      "5": {
+        "processing_time": 21.958284378051758,
+        "iou_scores": [],
+        "iou_avg": 0.1508098876566765,
+        "precision": 1.0,
+        "recall": 0.16129032258064516,
+        "f1_score": 0.2777777777777778
+      },
+      "6": {
+        "processing_time": 14.182868719100952,
+        "io u_scores": [],
+        "iou_avg": 0.37929831338616854,
+        "precision": 1.0,
+        "recall": 0.37735849056603776,
+        "f1_score": 0.547945205479452
+      },
+      "7": {
+        "processing_time": 27.378355026245117,
+        "iou_scores": [],
+        "iou_avg": 0.23784065743708138,
+        "precision": 1.0,
+        "recall": 0.20754716981132076,
+        "f1_score": 0.34375
+      },
+      "8": {
+        "processing_time": 10.255425214767456,
+        "iou_scores": [],
+        "iou_avg": 0.4141438365253436,
+        "precision": 1.0,
+        "recall": 0.42857142857142855,
+        "f1_score": 0.6
+      },
+      "9": {
+        "processing_time": 11.402803421020508,
+        "iou_scores": [],
+        "iou_avg": 0.14097238185247532,
+        "precision": 1.0,
+        "recall": 0.1095890410958904,
+        "f1_score": 0.19753086419753085
+      },
+      "10": {
+        "proc essing_time": 18.6151123046875,
+        "iou_scores": [],
+        "iou_avg": 0.3103222742778099,
+        "precision": 1.0,
+        "recall": 0.22807017543859648,
+        "f1_score": 0.37142857142857144
+      }
+    }
+  },
+  "another_tesseract": {
+    "avg_processing_time": 15.275244736671448,
+    "avg_iou": 0.2301887434617711,
+    "avg_precision": 1.0,
+    "avg_recall": 0.1881091105349086,
+    "avg_f1_score": 0.2984240652639676,
+    "images": {
+      "1": {
+        "processing_time": 11.773192405700684,
+        "iou_scores": [],
+        "iou_avg": 0.28235506492162277,
+        "precision": 1.0,
+        " recall": 0.16666666666666666,
+        "f1_score": 0.2857142857142857
+      },
+      "2": {
+        "processing_time": 18.31617021560669,
+        "iou_scores": [],
+        "iou_avg": 0.19655667838045832,
+        "pre cision": 1.0,
+        "recall": 0.15517241379310345,
+        "f1_score": 0.26865671641791045
+      },
+      "3": {
+        "processing_time": 13.101499319076538,
+        "iou_scores": [],
+        "iou_avg": 0.11327278862506024,
+        "precision": 1.0,
+        "recall": 0.01904761904761905,
+        "f1_score": 0.037383177570093455
+      },
+      "4": {
+        "processing_time": 40.5546441078186,
+        "iou_scores": [],
+        "io u_avg": 0.0763155515550145,
+        "precision": 1.0,
+        "recall": 0.027777777777777776,
+        "f1_score": 0.05405405405405406
+      },
+      "5": {
+        "processing_time": 11.67951250076294,
+        "iou_ scores": [],
+        "iou_avg": 0.1508098876566765,
+        "precision": 1.0,
+        "recall": 0.16129032258064516,
+        "f1_score": 0.2777777777777778
+      },
+      "6": {
+        "processing_time": 10.144988536834717,
+        "iou_scores": [],
+        "iou_avg": 0.37929831338616854,
+        "precision": 1.0,
+        "recall": 0.37735849056603776,
+        "f1_score": 0.547945205479452
+      },
+      "7": {
+        "processing_ti me": 5.177426099777222,
+        "iou_scores": [],
+        "iou_avg": 0.23784065743708138,
+        "precision": 1.0,
+        "recall": 0.20754716981132076,
+        "f1_score": 0.34375
+      },
+      "8": {
+        "processin g_time": 14.116269588470459,
+        "iou_scores": [],
+        "iou_avg": 0.4141438365253436,
+        "precision": 1.0,
+        "recall": 0.42857142857142855,
+        "f1_score": 0.6
+      },
+      "9": {
+        "processin g_time": 11.533627271652222,
+        "iou_scores": [],
+        "iou_avg": 0.14097238185247532,
+        "precision": 1.0,
+        "recall": 0.1095890410958904,
+        "f1_score": 0.19753086419753085
+      },
+      "10": {
+        "processing_time": 16.355117321014404,
+        "iou_scores": [],
+        "iou_avg": 0.3103222742778099,
+        "precision": 1.0,
+        "recall": 0.22807017543859648,
+        "f1_score": 0.37142857142857144
+      }
+    }
+  }
+}
