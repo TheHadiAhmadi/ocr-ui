@@ -5,6 +5,7 @@ import pytesseract
 
 class TesseractDetector(BaseDetector):
     name = "tesseract"
+    threshold = 0.5
     def __init__(self, name):
         self.name = name
     def predict(self, image_path):
