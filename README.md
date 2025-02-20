@@ -13,3 +13,11 @@ it will create segmentation-benchmark/dataset/coco.json file
 python segmentation-benchmark/src/main.py
 ```
 output will be generated in segmentation-benchmark/output folder.
+
+
+to generate html of outputs, run 
+```
+python segmentation-benchmark/scripts/generate_output.py
+```
+segmentation-benchmark/output/metrics_comparison.html file will be created which you can open in browser.
+

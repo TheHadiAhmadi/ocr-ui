@@ -1,11 +1,7 @@
 import os
 import json
-import pytesseract
-from PIL import Image
 
 import cv2
-from PIL import Image
-import pytesseract
 import json
 from sklearn.metrics import precision_score, recall_score, f1_score
 import numpy as np
@@ -123,6 +119,7 @@ def run_benchmarks(detector, dataset):
     for img_data in dataset["images"]:
         img_id = img_data["id"]
         result["images"][img_id] = {}
+        print("Processing " + str(img_id))
         img_path = "./segmentation-benchmark/dataset/images/" + img_data["file_name"]
         print("image: " + str(img_id))
 
@@ -167,7 +164,7 @@ def run_benchmarks(detector, dataset):
     result["avg_recall"] = np.average([img["recall"] for img in result["images"].values()])
     result["avg_f1_score"] = np.average([img["f1_score"] for img in result["images"].values()])
     result["avg_processing_time"] = np.average([img["processing_time"] for img in result["images"].values()])
-    result["avg_iou"] =  np.average([img["iou_avg"] for img in result["images"].values()])
+    result["avg_iou"] = np.average([img["iou_avg"] for img in result["images"].values()])
 
     for image in result["images"]:
         result["images"][image]["iou_scores"] = []
