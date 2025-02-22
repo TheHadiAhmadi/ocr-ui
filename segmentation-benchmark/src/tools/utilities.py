@@ -86,6 +86,26 @@ def compute_iou(boxA, boxB):
 
     return iou
 
+def save_benchmark(name, result):
+    metrics_file_path = "./segmentation-benchmark/output/metrics.json"
+    metrics_dir = os.path.dirname(metrics_file_path)
+
+    if not os.path.exists(metrics_dir):
+        os.makedirs(metrics_dir)
+
+    try:
+        with open(metrics_file_path, 'r') as f:
+            metrics = json.load(f)
+    except FileNotFoundError:
+        metrics = {}
+
+    metrics[name] = result
+
+    with open(metrics_file_path, 'w') as f:
+        json.dump(metrics, f, indent=4)
+        print("Benchmarks saved to segmentation-benchmark/output folder")
+
+
 def run_benchmarks(detector, dataset):
     """Benchmark object detector using COCO-formatted annotations."""
     result = {

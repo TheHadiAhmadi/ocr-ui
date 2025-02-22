@@ -1,5 +1,28 @@
 # Ocr benchmarks
 
+## Download EAST model
+to download east model you should run
+```
+wget https://raw.githubusercontent.com/oyyd/frozen_east_text_detection.pb/refs/heads/master/frozen_east_text_detection.pb segmentation-benchmark/dataset/frozen_east_text_detection.pb
+```
+
+## Python version
+file `segmentation-benchmark/src/main.py` needs python 3.12 (I tested with 3.12.0) and file `segmentation-benchmark/src/tools/east_detector.py` needs another version (...)
+
+```
+conda create --name ocr_env python=3.12.9
+conda activate ocr_env
+
+conda install -c pytorch torch torchvision
+conda install -c conda-forge opencv numpy pillow easyocr paddleocr pytesseract scikit-learn
+
+conda create --name ocr_east_env python=3.10.16
+conda activate ocr_east_env
+
+conda install -c conda-forge numpy opencv pillow scikit-learn
+```
+
+
 1. to change dataset you need to add images to segmentation-benchmark/dataset/images folder.
 2. to annotate images you can use roboflow.com site and copy annotated data(json) to segmentation-benchmark/dataset/annotations/{file_name}.json
 3. to generate coco based dataset, run 

@@ -28,4 +28,4 @@ detector = CRAFTDetector("CRAFT")
 dataset = load_dataset("./segmentation-benchmark/dataset/coco.json")
 result = run_benchmarks(detector, dataset)
 
-print(result)
+save_benchmark(detector.name, result)

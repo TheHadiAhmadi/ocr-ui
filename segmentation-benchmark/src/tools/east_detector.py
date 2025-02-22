@@ -1,4 +1,4 @@
-from utilities import BaseDetector, run_benchmarks, load_dataset
+from utilities import BaseDetector, run_benchmarks, save_benchmark, load_dataset
 import cv2
 import numpy as np
 
@@ -55,4 +55,4 @@ detector = EASTDetector("EAST")
 dataset = load_dataset("./segmentation-benchmark/dataset/coco.json")
 result = run_benchmarks(detector, dataset)
 
-print(result)
+save_benchmark(detector.name, result)
